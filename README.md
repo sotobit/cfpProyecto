@@ -41,7 +41,7 @@ los archivos existentes. `Main` no genera ni modifica los datos de entrada.
 
 ## Archivos
 
-Todos usan UTF-8 y punto y coma, sin encabezados. Estos ejemplos ilustran los formatos:
+Todos usan UTF-8 y punto y coma, sin encabezados. Estos ejemplos se pueden ver los formatos:
 
 | Archivo | Ejemplo |
 | --- | --- |
@@ -90,14 +90,3 @@ Los reportes se escriben después de validar todas las entradas. Si falla la val
 los reportes anteriores permanecen sin cambios y no representan los datos actuales.
 Un error de escritura puede dejar un reporte incompleto: revisar siempre el mensaje
 final de éxito. Cada ejecución calcula desde cero, sin acumular resultados anteriores.
-
-## Entrega
-
-Subir fuentes, configuraciones, cinco CSV de entrada, dos reportes y `conslusion.txt`.
-Este último es un borrador para personalizar con lo aprendido y dificultades reales;
-su nombre conserva la escritura del PDF. `.gitignore` excluye compilación y datos
-privados de NetBeans. La publicación queda pendiente del repositorio de destino.
-
-Se usa `Main` como en el HTML (el PDF lo escribe `main`), con exactamente dos clases
-con método `main`. El alcance integrado incluye generación, lectura y reportes,
-aunque la sección específica de entrega 1 del PDF se centra en el generador.
