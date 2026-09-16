@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="cfpProyecto" default="jar" basedir=".">
+    <description>Generación, lectura y reportes de ventas - Entrega 1.</description>
+    <import file="nbproject/build-impl.xml"/>
+</project>

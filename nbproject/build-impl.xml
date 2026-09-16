@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="cfpProyecto-impl" default="jar" basedir="..">
+    <property file="nbproject/project.properties"/>
+    <target name="compile">
+        <mkdir dir="${build.classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.classes.dir}"
+               source="${javac.source}" target="${javac.target}"
+               encoding="${source.encoding}" includeantruntime="false"/>
+    </target>
+    <target name="compile-single" depends="compile"/>
+    <target name="run" depends="compile">
+        <java classname="${main.class}" classpath="${run.classpath}"
+              fork="true" failonerror="true" dir="${basedir}"/>
+    </target>
+    <target name="run-single" depends="compile">
+        <property name="run.class" value="${main.class}"/>
+        <java classname="${run.class}" classpath="${run.classpath}"
+              fork="true" failonerror="true" dir="${basedir}"/>
+    </target>
+    <target name="jar" depends="compile">
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.jar}" basedir="${build.classes.dir}">
+            <manifest><attribute name="Main-Class" value="${main.class}"/></manifest>
+        </jar>
+    </target>
+    <target name="javadoc">
+        <javadoc sourcepath="${src.dir}" destdir="${dist.javadoc.dir}"
+                 encoding="${source.encoding}" docencoding="UTF-8" charset="UTF-8">
+            <fileset dir="${src.dir}" includes="**/*.java"/>
+        </javadoc>
+    </target>
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+</project>

@@ -1,0 +1,19 @@
+BORRADOR PARA PERSONALIZAR ANTES DE ENTREGAR
+
+1. Lo aprendido
+El proyecto permite practicar la generación y lectura de archivos CSV, el uso de
+ciclos y colecciones, la relación de datos mediante identificadores y la creación
+de reportes ordenados. BigDecimal permite calcular importes sin los errores de
+representación propios de los números de punto flotante.
+Personalizar: describir cuáles de estos conocimientos adquirió el estudiante.
+
+2. Aplicaciones profesionales
+Estas técnicas pueden aplicarse a reportes básicos de ventas, revisión de
+inventarios e intercambio de información mediante archivos de texto.
+Personalizar: relacionar una aplicación con el área profesional del estudiante.
+
+3. Dificultades
+Entre los aspectos que requieren atención están la coherencia de los documentos,
+el formato de cada línea, las referencias a productos y el orden de los reportes.
+Personalizar: explicar las dificultades que realmente se presentaron y cómo se
+resolvieron durante el trabajo.
