@@ -1,0 +1,3 @@
+CC;10;Ana;Pérez
+CC;20;Luis;Gómez
+CC;30;Eva;Ruiz

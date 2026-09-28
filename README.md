@@ -1,92 +1,114 @@
-# Entrega 1: generación, lectura y reportes CSV
+# Entrega 2 de ventas y vendedores
 
-Aplicación de consola para Java 8, sin dependencias externas. Integra la generación
-indicada en el PDF con la lectura y los reportes del HTML. Puede abrirse en NetBeans
-(Ant) y en Eclipse.
+Aplicación educativa de consola en **Java 21**, sin dependencias externas.
+Lee catálogos y ventas TXT, valida registros y produce dos reportes CSV.
+Repositorio: https://github.com/sotobit/cfpProyecto
 
-## NetBeans
+## Ejecutar en NetBeans
 
-1. Tener un JDK instalado, preferiblemente JDK 8.
-2. Abrir `cfpProyecto` con **File > Open Project**.
-3. Ejecutar `GenerateInfoFiles.java` mediante **Run File**.
-4. Ejecutar `Main.java` mediante **Run File** o usar **Run Project**.
-5. Revisar el mensaje de éxito y los CSV en la raíz del proyecto.
+1. Abrir la carpeta `cfpProyecto` con File > Open Project.
+2. Registrar un JDK 21 en Tools > Java Platforms si aún no aparece.
+3. En Properties > Libraries seleccionar ese JDK. En Sources comprobar Java 21 y UTF-8.
+4. En Run mantener `Main` como clase principal y la raíz del proyecto como directorio de trabajo.
+5. Ejecutar Run Project. Ya se incluyen datos de ejemplo; elegir **3** para calcular o **4** para exportar.
 
-## Eclipse
+El generador también se ejecuta con Run File sobre `GenerateInfoFiles.java`.
+No es necesario regenerar datos cada vez. Si existen datos de ejemplo, solo `SI` autoriza reemplazarlos.
 
-1. Usar **File > Import > General > Existing Projects into Workspace** y seleccionar `cfpProyecto`.
-2. Configurar un JDK compatible con el entorno **JavaSE-1.8**.
-3. Ejecutar `GenerateInfoFiles.java` con **Run As > Java Application**.
-4. Ejecutar `Main.java` de la misma manera. Usar la raíz del proyecto como directorio de trabajo.
+## Menú
 
-## Consola
+| Opción | Acción |
+| --- | --- |
+| 1 | Genera cuatro productos, tres vendedores y sus ventas pseudoaleatorias. |
+| 2 | Lee y muestra el texto de los archivos; no valida aún cada registro. |
+| 3 | Relee, valida, calcula y muestra los dos reportes. |
+| 4 | Relee, valida, calcula y exporta los CSV; funciona sin usar antes 2 o 3. |
+| 5 | Finaliza. El fin de entrada también cierra correctamente. |
 
-Desde la raíz de `cfpProyecto`, crear la carpeta `build/classes` y ejecutar con JDK 8:
+## Compilación y ejecución por consola
 
-```text
-javac -encoding UTF-8 -d build/classes src/GenerateInfoFiles.java src/Main.java src/Producto.java src/Vendedor.java
-java -cp build/classes GenerateInfoFiles
+Desde la raíz del proyecto, con JDK 21 en PATH:
+
+```powershell
+New-Item -ItemType Directory -Force build/classes
+javac -encoding UTF-8 --release 21 -d build/classes src/GenerateInfoFiles.java src/Main.java src/Producto.java src/Vendedor.java
 java -cp build/classes Main
 ```
 
-Con Ant y un JDK disponibles en el PATH:
+Con Ant y JAVA_HOME configurados: `ant jar` y `java -jar dist/cfpProyecto.jar`.
+Eclipse: importar como proyecto existente y seleccionar JavaSE-21.
+La validación incluida se ejecutó con `javac` y `java`; no constituye una prueba visual de NetBeans o Eclipse.
+
+## Formatos
+
+Todos los archivos son UTF-8, sin fila de títulos, con punto y coma. Precios y cantidades
+son enteros entre 0 y 9223372036854775807. No se admiten centavos ni separadores de miles.
+Identificadores y documentos se conservan como texto; `01` es distinto de `1`.
+
+| Archivo | Formato |
+| --- | --- |
+| productos.txt | `ID;Nombre;Precio` |
+| vendedores.txt | `TipoDocumento;Documento;Nombres;Apellidos` |
+| ventas_*.txt | Primera línea `TipoDocumento;Documento`; siguientes `IDProducto;Cantidad;` |
+| reporte_vendedores.csv | `Nombre completo;Recaudo` |
+| reporte_productos.csv | `Nombre;Precio unitario` |
+
+Los archivos de ventas se exploran solo en la raíz y en orden de nombre. La cabecera,
+no el nombre del archivo, identifica al vendedor. Se permiten varios archivos por vendedor,
+por ejemplo `ventas_100000001_extra.txt`. Se incluyen vendedores y productos sin ventas.
+
+Vendedores: recaudo descendente; empate por tipo y documento en orden de texto.
+Productos: unidades descendentes; empate por ID en orden de texto. Las unidades se
+muestran en consola para comprobar el orden, pero no se agregan como columna al CSV.
+
+## Errores y límites
+
+Una fila incorrecta se omite con advertencia de archivo, línea y motivo. Se conserva
+el primer ID válido ante duplicados. Una cabecera inválida descarta todo ese archivo.
+Precios fraccionarios, negativos, campos vacíos, referencias inexistentes y desbordamientos
+no se suman. Las tres comprobaciones numéricas se hacen antes de cambiar acumulados.
+
+Catálogos ausentes o sin registros válidos, falta de archivos de ventas, todas las cabeceras
+inválidas y errores de lectura detienen la operación y devuelven el control al menú.
+Cada cálculo comienza desde cero. Los resultados pueden ser parciales respecto a las
+entradas si hubo filas descartadas: siempre deben revisarse las advertencias.
+
+Si falla la lectura, los CSV anteriores permanecen y no representan la ejecución actual.
+Un fallo durante la exportación puede dejar uno de los reportes escrito o incompleto;
+la aplicación avisa y no anuncia exportación completada. La publicación conjunta de los
+dos archivos es una mejora pendiente de robustez.
+
+El generador reemplaza solo `productos.txt`, `vendedores.txt` y sus tres archivos
+`ventas_100000001.txt` a `ventas_100000003.txt`. Otros archivos de ventas permanecen:
+revisarlos antes de generar otro conjunto. Los métodos públicos del generador escriben
+archivos; la confirmación pertenece a los dos puntos de entrada interactivos.
+
+Se eligen listas y búsqueda secuencial para facilitar la explicación. La búsqueda cuesta
+O(n) y el ordenamiento por inserción O(n²) en el peor caso. No hay un límite fijo de
+vendedores en el código, pero no se promete rendimiento para volúmenes masivos.
+
+## Documentación y pruebas
+
+- `docs/Entrega2_Informe.docx`: informe APA 7 del desarrollo, caso manual y resultados.
+- `docs/PendientesEntrega3.docx`: trabajo restante y mejoras opcionales.
+- `docs/BaseConocimiento.md`: fuentes, decisiones, conceptos y guía de sustentación.
+- `docs/evidencias/`: salida real del caso manual y resultados de pruebas.
+- `ejemplos/caso_manual/`: entradas reproducibles y salidas esperadas; ejecutar Main usando esa carpeta como directorio de trabajo y el classpath absoluto de build/classes.
+- `ejemplos/entrega1/`: CSV originales conservados. El programa nuevo no los procesa.
+
+Pruebas de integración (Python 3 solo para verificar; no es necesario para usar Java):
 
 ```text
-ant -Dmain.class=GenerateInfoFiles run
-ant run
+python pruebas/verificar.py --java-home "C:/ruta/al/jdk-21"
 ```
 
-`ant jar` crea el ejecutable. Desde la raíz, `java -jar dist/cfpProyecto.jar` procesa
-los archivos existentes. `Main` no genera ni modifica los datos de entrada.
+Las pruebas usan carpetas temporales y no reemplazan los datos de la raíz.
+Solo hay cuatro clases de aplicación y dos clases con `main`.
 
-## Archivos
+## Criterio académico
 
-Todos usan UTF-8 y punto y coma, sin encabezados. Estos ejemplos se pueden ver los formatos:
-
-| Archivo | Ejemplo |
-| --- | --- |
-| `productos.csv` | `1;Laptop;1500000.50` |
-| `vendedores.csv` | `CC;100000001;Ana;Perez` |
-| `vendedor_100000001.csv` | Primera línea: `CC;100000001`. Después: `1;5;` |
-| `reporte_vendedores.csv` | `Ana Perez;7500002.50` |
-| `reporte_productos.csv` | `Laptop;1500000.50` |
-
-El generador crea cuatro productos y tres vendedores (documentos 100000001 a
-100000003, tipo CC), con dos a cinco registros de venta cada uno. Genera precios
-enteros entre 10000 y 2500000 y cantidades entre 1 y 10. Los nombres, apellidos,
-precios y ventas son pseudoaleatorios. Los documentos y nombres de archivo son
-estables: repetir la generación sobrescribe los mismos cinco archivos. Si se reduce
-la cantidad de vendedores en el código, los archivos sobrantes no se borran solos.
-
-`Main` lee ambos catálogos y todos los archivos `vendedor_*.csv` de la raíz, sin fijar
-la cantidad de vendedores. Se pueden agregar archivos como `vendedor_100000001_extra.csv`:
-la primera línea identifica al vendedor y todas sus ventas se suman. Un vendedor
-puede no tener archivo; un archivo con solo la primera línea representa cero ventas.
-Debe existir al menos un archivo de ventas y ambos catálogos deben contener datos.
-
-El reporte de vendedores incluye nombre completo y recaudo, ordenados de mayor a
-menor recaudo. El de productos incluye nombre y precio unitario, ordenados por
-unidades vendidas de mayor a menor. La cantidad sirve para ordenar, pero no se añade
-como columna. Ambos incluyen registros sin ventas. Los empates se resuelven por
-orden de texto del identificador (tipo y documento para vendedores).
-
-Los importes se calculan con `BigDecimal` y se escriben con punto y dos decimales,
-redondeando la salida con `HALF_UP`. Se admiten precios decimales en las entradas.
-
-## Clases y validaciones
-
-- `GenerateInfoFiles`: primer `main` y los métodos `createProductsFile(int)`,
-  `createSalesManInfoFile(int)` y `createSalesMenFile(int, String, long)`.
-- `Main`: segundo `main`, lectura línea por línea, procesamiento y reportes.
-- `Producto` y `Vendedor`: datos y acumulados, sin método `main`.
-
-Se usan ciclos, listas, mapas y cierre automático de archivos. Ningún programa pide
-datos al usuario. Los archivos faltantes, formatos incorrectos, campos vacíos,
-identificadores duplicados en catálogos, referencias inexistentes y valores negativos
-producen un mensaje de error y código de salida 1. Los precios y cantidades cero
-son válidos en entradas externas. Las ventas requieren el punto y coma final.
-
-Los reportes se escriben después de validar todas las entradas. Si falla la validación,
-los reportes anteriores permanecen sin cambios y no representan los datos actuales.
-Un error de escritura puede dejar un reporte incompleto: revisar siempre el mensaje
-final de éxito. Cada ejecución calcula desde cero, sin acumular resultados anteriores.
+Se priorizó la indicación posterior del profesor y la decisión de la estudiante: Java 21,
+menú, TXT y descarte informado. Se conservan los dos reportes y los tres métodos exigidos
+por la guía. Se usa ArrayList en lugar del HashMap sugerido para mantener el nivel
+acordado. Esta versión no afirma cumplir simultáneamente la restricción anterior de
+Java 8 y ejecución sin interacción. El historial Git conserva la entrega anterior.

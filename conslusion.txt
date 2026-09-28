@@ -1,0 +1,20 @@
+ENTREGA 2 - REFLEXIÓN SOBRE EL PROYECTO
+
+Conocimientos trabajados
+El desarrollo integra tipos de datos, condicionales, ciclos, métodos, arreglos y
+listas. Las ventas permiten distinguir un contador de un acumulador y observar
+cómo un identificador relaciona datos guardados en archivos diferentes.
+
+Aplicaciones posibles
+La lectura, validación y clasificación de archivos puede servir para consolidar
+ventas, revisar inventarios y preparar reportes administrativos básicos. Esta
+versión educativa usa pesos enteros y no sustituye un sistema contable.
+
+Dificultades técnicas abordadas
+Se resolvieron diferencias entre las instrucciones originales y la propuesta
+posterior del profesor, se simplificaron las búsquedas y el ordenamiento, y se
+comprobaron datos corruptos y límites numéricos. La lectura uniforme con nextLine
+previene el salto de entrada ilustrado en el ejemplo de Scanner del curso.
+
+Estas observaciones describen el trabajo técnico verificable. La reflexión oral
+sobre lo aprendido personalmente corresponde a la estudiante durante la sustentación.

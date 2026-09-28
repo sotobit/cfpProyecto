@@ -1,24 +1,17 @@
-import java.math.BigDecimal;
-
-/** Datos de un vendedor y dinero recaudado durante la lectura de ventas. */
+/** Identidad del vendedor y su recaudo en pesos enteros. */
 public class Vendedor {
     final String tipoDocumento;
     final String documento;
     final String nombres;
     final String apellidos;
-    BigDecimal totalRecaudado = BigDecimal.ZERO;
+    long totalRecaudado;
 
-    /**
-     * Construye un vendedor sin ventas.
-     * @param tipoDocumento tipo de documento
-     * @param documento número de documento
-     * @param nombres nombres del vendedor
-     * @param apellidos apellidos del vendedor
-     */
+    /** Crea un vendedor sin recaudo; tipo y documento forman su identidad. */
     public Vendedor(String tipoDocumento, String documento, String nombres, String apellidos) {
         this.tipoDocumento = tipoDocumento;
         this.documento = documento;
         this.nombres = nombres;
         this.apellidos = apellidos;
+        totalRecaudado = 0;
     }
 }

@@ -1,0 +1,29 @@
+
+VENTAS Y VENDEDORES - Entrega 2
+1. Generar datos de ejemplo
+2. Cargar y mostrar archivos de entrada
+3. Calcular y mostrar reportes
+4. Exportar reportes CSV
+5. Salir
+Opción:
+VENDEDORES - nombre;recaudo en pesos
+Ana Pérez;400
+Luis Gómez;400
+Eva Ruiz;0
+
+PRODUCTOS - nombre;precio en pesos (ordenados por unidades)
+Mouse;50 | Unidades: 12
+Teclado;100 | Unidades: 2
+Monitor;200 | Unidades: 0
+Exportación completada:
+C:\Users\sebas\AppData\Local\Temp\cfp-75dme3s9\reporte_vendedores.csv
+C:\Users\sebas\AppData\Local\Temp\cfp-75dme3s9\reporte_productos.csv
+Cálculo completado con los registros válidos. Revise las advertencias.
+
+VENTAS Y VENDEDORES - Entrega 2
+1. Generar datos de ejemplo
+2. Cargar y mostrar archivos de entrada
+3. Calcular y mostrar reportes
+4. Exportar reportes CSV
+5. Salir
+Opción: Programa finalizado.

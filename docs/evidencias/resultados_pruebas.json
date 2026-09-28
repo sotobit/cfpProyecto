@@ -1,0 +1,93 @@
+{
+  "java": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+  "casos": [
+    {
+      "caso": "Cálculo manual, múltiples archivos, empate y registros sin ventas",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Repetir cálculo y exportación no duplica acumulados",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Menú inválido, consulta y exportación sin cálculo previo",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Datos corruptos se omiten y filas válidas se conservan",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Catálogos duplicados y precios inválidos",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Cabecera inválida se omite",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Cabecera ausente se omite",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Archivo con solo cabecera y cantidad cero",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Tipos de documento distintos con mismo número",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Desbordamiento de multiplicación no altera los totales",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Desbordamiento de recaudo no actualiza unidades",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Desbordamiento de unidades no altera recaudo",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Catálogo ausente",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Catálogo vacío",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Vendedores sin registros válidos",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Sin archivos de ventas",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Todas las cabeceras inválidas",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Error de escritura conserva el menú",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Cancelar generación protege entradas",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Fin de entrada cierra el menú",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Fin de entrada cancela sobrescritura",
+      "resultado": "APROBADO"
+    },
+    {
+      "caso": "Generador independiente, confirmación y coherencia",
+      "resultado": "APROBADO"
+    }
+  ]
+}

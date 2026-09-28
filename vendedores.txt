@@ -1,0 +1,3 @@
+CC;100000001;Luis;Martínez
+CC;100000002;Carlos;Rodríguez
+CC;100000003;María;Gómez
