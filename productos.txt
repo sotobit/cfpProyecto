@@ -1,4 +1,0 @@
-1;Portátil;139127
-2;Mouse;1849046
-3;Teclado;2239091
-4;Monitor;1734028

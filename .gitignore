@@ -2,3 +2,14 @@
 /dist/
 /nbproject/private/
 *.class
+
+# El repositorio contiene código; entradas, salidas e informes son locales.
+*.docx
+*.pdf
+*.png
+*.csv
+*.txt
+*.md
+!/README.md
+/docs/
+/ejemplos/

@@ -7,8 +7,14 @@ import tempfile
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--java-home', required=True)
+parser.add_argument('--evidence-dir', type=Path,
+                    help='Carpeta externa al repositorio para guardar resultados')
 args = parser.parse_args()
 repo = Path(__file__).resolve().parents[1]
+if args.evidence_dir is not None:
+ evidence = args.evidence_dir.resolve()
+ if evidence == repo or repo in evidence.parents:
+  parser.error('--evidence-dir debe estar fuera del repositorio')
 java = Path(args.java_home).resolve() / 'bin' / 'java.exe'
 javac = java.with_name('javac.exe')
 classes = repo / 'build' / 'classes'
@@ -91,12 +97,11 @@ with tempfile.TemporaryDirectory(prefix='cfp-generador-') as td:
   assert lines[0]==f'{t};{ident}' and 2<=len(lines)-1<=5
   assert all(x.split(';')[0] in products and 1<=int(x.split(';')[1])<=10 for x in lines[1:])
  results.append({'caso':'Generador independiente, confirmación y coherencia','resultado':'APROBADO'})
-# Caso reproducible para el informe.
-fixture=repo/'ejemplos'/'caso_manual'; fixture.mkdir(parents=True,exist_ok=True)
-for key,value in base.items(): (fixture/key).write_text(value,encoding='utf-8')
-for name,value in [('esperado_vendedores.csv',expected_v),('esperado_productos.csv',expected_p)]: (fixture/name).write_text(value,encoding='utf-8')
-evidence=repo/'docs'/'evidencias'; evidence.mkdir(parents=True,exist_ok=True)
-(evidence/'salida_caso_manual.txt').write_text(log,encoding='utf-8')
-(evidence/'resultados_pruebas.json').write_text(json.dumps({'java':version,'casos':results},ensure_ascii=False,indent=2),encoding='utf-8')
+if args.evidence_dir is not None:
+ evidence.mkdir(parents=True, exist_ok=True)
+ (evidence/'salida_caso_manual.txt').write_text(log, encoding='utf-8')
+ (evidence/'resultados_pruebas.json').write_text(
+  json.dumps({'java':version,'casos':results},ensure_ascii=False,indent=2),
+  encoding='utf-8')
 print(version)
 print(str(len(results))+' escenarios APROBADOS')

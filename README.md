@@ -2,7 +2,8 @@
 
 Aplicación educativa de consola en **Java 21**, sin dependencias externas.
 Lee catálogos y ventas TXT, valida registros y produce dos reportes CSV.
-Repositorio: https://github.com/sotobit/cfpProyecto
+El repositorio contiene solo código, configuración y este README. Los datos e informes
+de la entrega se conservan en la carpeta local hermana `Entrega2_Documentacion`.
 
 ## Ejecutar en NetBeans
 
@@ -10,10 +11,12 @@ Repositorio: https://github.com/sotobit/cfpProyecto
 2. Registrar un JDK 21 en Tools > Java Platforms si aún no aparece.
 3. En Properties > Libraries seleccionar ese JDK. En Sources comprobar Java 21 y UTF-8.
 4. En Run mantener `Main` como clase principal y la raíz del proyecto como directorio de trabajo.
-5. Ejecutar Run Project. Ya se incluyen datos de ejemplo; elegir **3** para calcular o **4** para exportar.
+5. Ejecutar Run Project. En el primer uso, elegir **1** para generar datos de ejemplo;
+   después usar **3** para calcular o **4** para exportar.
 
 El generador también se ejecuta con Run File sobre `GenerateInfoFiles.java`.
-No es necesario regenerar datos cada vez. Si existen datos de ejemplo, solo `SI` autoriza reemplazarlos.
+No es necesario regenerar datos cada vez. Si existen datos de ejemplo, solo `SI`
+autoriza reemplazarlos. Los TXT y CSV generados se ignoran en Git.
 
 ## Menú
 
@@ -87,14 +90,11 @@ Se eligen listas y búsqueda secuencial para facilitar la explicación. La búsq
 O(n) y el ordenamiento por inserción O(n²) en el peor caso. No hay un límite fijo de
 vendedores en el código, pero no se promete rendimiento para volúmenes masivos.
 
-## Documentación y pruebas
+## Pruebas y documentación local
 
-- `docs/Entrega2_Informe.docx`: informe APA 7 del desarrollo, caso manual y resultados.
-- `docs/PendientesEntrega3.docx`: trabajo restante y mejoras opcionales.
-- `docs/BaseConocimiento.md`: fuentes, decisiones, conceptos y guía de sustentación.
-- `docs/evidencias/`: salida real del caso manual y resultados de pruebas.
-- `ejemplos/caso_manual/`: entradas reproducibles y salidas esperadas; ejecutar Main usando esa carpeta como directorio de trabajo y el classpath absoluto de build/classes.
-- `ejemplos/entrega1/`: CSV originales conservados. El programa nuevo no los procesa.
+El informe APA 7, el documento de pendientes, la base de conocimiento, las fuentes
+consultadas y los datos de ejemplo se entregan en `Entrega2_Documentacion`, fuera del
+repositorio. El historial Git conserva la entrega anterior.
 
 Pruebas de integración (Python 3 solo para verificar; no es necesario para usar Java):
 
@@ -102,13 +102,15 @@ Pruebas de integración (Python 3 solo para verificar; no es necesario para usar
 python pruebas/verificar.py --java-home "C:/ruta/al/jdk-21"
 ```
 
-Las pruebas usan carpetas temporales y no reemplazan los datos de la raíz.
+Las pruebas usan carpetas temporales y no reemplazan los datos de la raíz. Por defecto
+no escriben archivos adicionales en el repositorio. Para guardar su registro se puede
+pasar `--evidence-dir` con una carpeta externa.
 Solo hay cuatro clases de aplicación y dos clases con `main`.
 
 ## Criterio académico
 
-Se priorizó la indicación posterior del profesor y la decisión de la estudiante: Java 21,
+Se priorizó la indicación posterior del profesor y el criterio acordado: Java 21,
 menú, TXT y descarte informado. Se conservan los dos reportes y los tres métodos exigidos
 por la guía. Se usa ArrayList en lugar del HashMap sugerido para mantener el nivel
 acordado. Esta versión no afirma cumplir simultáneamente la restricción anterior de
-Java 8 y ejecución sin interacción. El historial Git conserva la entrega anterior.
+Java 8 y ejecución sin interacción.
