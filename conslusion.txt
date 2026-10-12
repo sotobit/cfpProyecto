@@ -1,0 +1,27 @@
+ENTREGA FINAL - REFLEXIÓN SOBRE EL PROYECTO
+
+1. Aprendizajes del desarrollo
+El proyecto permitió aplicar tipos de datos, operadores, condicionales, ciclos,
+métodos, arreglos y listas a un problema de ventas. Los identificadores relacionan
+productos, vendedores y archivos; las cantidades y los recaudos son acumuladores.
+La interfaz Swing incorpora etiquetas, campos, tablas y eventos. Separar la
+presentación de los cálculos permite usar la misma lógica desde la ventana y
+desde el procesamiento automático. Las pruebas contrastan los resultados con
+cuentas manuales y comprueban que los cambios permanezcan después de recargar.
+
+2. Aplicaciones profesionales de los conocimientos trabajados
+La lectura, validación, actualización y clasificación de datos puede aplicarse
+a consolidación de ventas, catálogos, inventarios y reportes administrativos.
+La identificación de registros incorrectos y los respaldos ayudan a mantener
+información coherente. Esta versión es educativa: usa pesos enteros y precios
+actuales del catálogo; una aplicación contable requeriría otras reglas y controles.
+
+3. Dificultades técnicas abordadas
+Se armonizó el arranque automático con la gestión voluntaria mediante formularios.
+El CRUD exigió conservar identidades y archivos de origen, impedir borrados con
+referencias y evitar sobrescribir entradas corruptas. Se verificaron los límites
+de long antes de multiplicar o sumar. La escritura de varios archivos exigió
+temporales, respaldos y restauración cuando falla una sustitución. SwingWorker
+mantiene los archivos fuera del hilo de eventos y bloquea operaciones simultáneas.
+Las pruebas de interfaz y las vistas capturadas durante su ejecución documentan
+el funcionamiento de la versión entregada.

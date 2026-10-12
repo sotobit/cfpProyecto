@@ -9,7 +9,11 @@
 *.png
 *.csv
 *.txt
+!/conslusion.txt
 *.md
 !/README.md
 /docs/
 /ejemplos/
+/respaldos/
+/.cfp-temporal-*/
+/.cfp-generacion-*/

@@ -12,4 +12,9 @@ public class Producto {
         this.precio = precio;
         cantidadVendida = 0;
     }
+
+    @Override
+    public String toString() {
+        return id + " - " + nombre;
+    }
 }

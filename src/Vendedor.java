@@ -14,4 +14,9 @@ public class Vendedor {
         this.apellidos = apellidos;
         totalRecaudado = 0;
     }
+
+    @Override
+    public String toString() {
+        return tipoDocumento + " " + documento + " - " + nombres + " " + apellidos;
+    }
 }
